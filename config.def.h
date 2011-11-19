@@ -65,7 +65,7 @@ enum {
 #ifdef _THUMBS_CONFIG
 
 /* default dimension of thumbnails (width == height): */
-enum { THUMB_SIZE = 60 };
+enum { THUMB_SIZE = 160 };
 
 #endif
 #ifdef _MAPPINGS_CONFIG
