@@ -140,13 +140,11 @@ static const keymap_t keys[] = {
 
 	/* run shell command line on current file ("$SXIV_IMG"): */
 	{ true,   XK_less,          it_shell_cmd,         (arg_t) \
-			"mogrify -rotate -90 \"$SXIV_IMG\"" },
+			"exiftran -i2 \"$SXIV_IMG\"" },
 	{ true,   XK_greater,       it_shell_cmd,         (arg_t) \
-			"mogrify -rotate +90 \"$SXIV_IMG\"" },
-	{ true,   XK_comma,         it_shell_cmd,         (arg_t) \
-			"jpegtran -rotate 270 -copy all -outfile \"$SXIV_IMG\" \"$SXIV_IMG\"" },
-	{ true,   XK_period,        it_shell_cmd,         (arg_t) \
-			"jpegtran -rotate  90 -copy all -outfile \"$SXIV_IMG\" \"$SXIV_IMG\"" },
+			"exiftran -i9 \"$SXIV_IMG\"" },
+	{ true,   XK_8,             it_shell_cmd,         (arg_t) \
+			"exiftran -i8 \"$SXIV_IMG\"" },
 };
 
 /* mouse button mappings for image mode: */
