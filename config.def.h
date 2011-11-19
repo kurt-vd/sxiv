@@ -29,7 +29,7 @@ enum {
 /* default color for window background: */
 static const char * const BG_COLOR  = "#777777";
 /* default color for thumbnail selection: */
-static const char * const SEL_COLOR = "#DDDDDD";
+static const char * const SEL_COLOR = "#660066";
 /* (see X(7) section "COLOR NAMES" for valid values) */
 
 #endif
