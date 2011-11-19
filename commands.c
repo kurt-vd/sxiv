@@ -445,6 +445,8 @@ bool it_shell_cmd(arg_t a) {
 	}
 
 	if ((pid = fork()) == 0) {
+		fprintf(stderr, "[%s] $ %s\n", files[n].path, cmdline);
+		fflush(stderr);
 		execl("/bin/sh", "/bin/sh", "-c", cmdline, NULL);
 		warn("could not exec: /bin/sh. command line was: %s", cmdline);
 		exit(EXIT_FAILURE);
