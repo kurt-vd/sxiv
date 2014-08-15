@@ -253,6 +253,17 @@ bool ci_navigate(arg_t a)
 {
 	long n = (long) a;
 
+	/* stop slideshow on manual navigation */
+	if (img.ss.on) {
+		img.ss.on = false;
+		reset_timeout(slideshow);
+#if 1
+		/* do nothing on regular move ? */
+		if (!prefix && n == 1)
+			return true;
+#endif
+	}
+
 	if (prefix > 0)
 		n *= prefix;
 	n += fileidx;
