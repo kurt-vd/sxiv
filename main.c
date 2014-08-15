@@ -565,15 +565,22 @@ void on_keypress(XKeyEvent *kev)
 		/* number prefix for commands */
 		prefix = prefix * 10 + (int) (key - '0');
 		return;
-	} else for (i = 0; i < ARRLEN(keys); i++) {
+	} else {
+		int handled = 0;
+
+		for (i = 0; i < ARRLEN(keys); i++)
 		if (keys[i].ksym == ksym &&
 		    MODMASK(keys[i].mask | sh) == MODMASK(kev->state) &&
 		    keys[i].cmd >= 0 && keys[i].cmd < CMD_COUNT &&
 		    (cmds[keys[i].cmd].mode < 0 || cmds[keys[i].cmd].mode == mode))
 		{
+			handled = 1;
 			if (cmds[keys[i].cmd].func(keys[i].arg))
 				dirty = true;
 		}
+		if (!handled && (kev->state & ControlMask))
+			/* feed all unhandled "Ctrl+KEY" to key-handler */
+			run_key_handler(XKeysymToString(ksym), kev->state & ~sh);
 	}
 	if (dirty)
 		redraw();
