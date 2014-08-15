@@ -338,6 +338,16 @@ void load_image(int new)
 		reset_timeout(animate);
 }
 
+static const char *mybasename(const char *path)
+{
+	const char *str;
+
+	str = strrchr(path, '/');
+	if (str)
+		return str+1;
+	return path ?: ".";
+}
+
 void update_info(void)
 {
 	int sel;
@@ -354,7 +364,7 @@ void update_info(void)
 	if (mode == MODE_THUMB) {
 		win_set_title(&win, "sxiv");
 	} else {
-		snprintf(title, sizeof(title), "sxiv - %s", files[sel].name);
+		snprintf(title, sizeof(title), "sxiv - %s", mybasename(files[sel].name));
 		win_set_title(&win, title);
 	}
 
